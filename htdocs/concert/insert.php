@@ -1,7 +1,13 @@
-<? session_start(); ?>
+<? session_start(); date_default_timezone_set('Asia/Seoul');?>
 
 <meta charset="utf-8">
 <?
+	$userid = $_SESSION['userid'];
+	$mode = $_GET['mode'];
+	$subject = $_POST['subject'];
+	$content = $_POST['content'];
+	$table = $_GET['table'];
+	$num = $_GET['num'];
 	if(!$userid) {
 		echo("
 		<script>
@@ -13,7 +19,7 @@
 	}
 
 	$regist_day = date("Y-m-d (H:i)");  // 현재의 '년-월-일-시-분'을 저장
-		/*   단일 파일 업로드 
+		/*   단일 파일 업로드
 		$upfile_name	 = $_FILES["upfile"]["name"];
 		$upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
 		$upfile_type     = $_FILES["upfile"]["type"];
@@ -24,7 +30,7 @@
 	// 다중 파일 업로드
 	$files = $_FILES["upfile"];
 	$count = count($files["name"]);
-			
+
 	$upload_dir = './data/';
 
 	for ($i=0; $i<$count; $i++)
@@ -34,7 +40,7 @@
 		$upfile_type[$i]     = $files["type"][$i];
 		$upfile_size[$i]     = $files["size"][$i];
 		$upfile_error[$i]    = $files["error"][$i];
-      
+
 		$file = explode(".", $upfile_name[$i]);
 		$file_name = $file[0];
 		$file_ext  = $file[1];
@@ -43,7 +49,7 @@
 		{
 			$new_file_name = date("Y_m_d_H_i_s");
 			$new_file_name = $new_file_name."_".$i;
-			$copied_file_name[$i] = $new_file_name.".".$file_ext;      
+			$copied_file_name[$i] = $new_file_name.".".$file_ext;
 			$uploaded_file[$i] = $upload_dir.$copied_file_name[$i];
 
 			if( $upfile_size[$i]  > 500000 ) {
@@ -111,7 +117,7 @@
 			{
 				$delete_field = "file_copied_".$i;
 				$delete_name = $row[$delete_field];
-				
+
 				$delete_path = "./data/".$delete_name;
 
 				unlink($delete_path);
@@ -124,7 +130,7 @@
 				if (!$upfile_error[$i])
 				{
 					$sql = "update $table set $field_org_name = '$org_name_value', $field_real_name = '$org_real_value'  where num=$num";
-					mysql_query($sql, $connect);  // $sql 에 저장된 명령 실행					
+					mysql_query($sql, $connect);  // $sql 에 저장된 명령 실행
 				}
 			}
 
@@ -159,5 +165,3 @@
 	   </script>
 	";
 ?>
-
-  
