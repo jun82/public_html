@@ -9,8 +9,10 @@
 <link href="../css/greet.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <?
-	$mode = $_GET['mode'];
 	$page = $_GET['page'];
+	$mode = $_GET['mode'];
+	$find = $_POST['find'];
+	$search = $_POST['search'];
 	include "../lib/dbconn.php";
 
 	$scale=10;			// 한 화면에 표시되는 글 수
