@@ -1,5 +1,6 @@
 <?
    session_start();
+   $num = $_GET['num'];
 
    include "../lib/dbconn.php";
 
@@ -14,4 +15,3 @@
 	   </script>
 	";
 ?>
-
