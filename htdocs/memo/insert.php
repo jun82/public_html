@@ -1,6 +1,9 @@
-<? session_start(); ?>
+<? session_start();
+ 	 date_default_timezone_set('Asia/Seoul');?>
 <meta charset="utf-8">
 <?
+	$userid = $_SESSION['userid'];
+	$content = $_POST['content'];
 	if(!$userid) {
 		echo("
 		<script>
@@ -25,8 +28,8 @@
 
 	include "../lib/dbconn.php";       // dconn.php 파일을 불러옴
 
-    $sql = "select * from member where id='$userid'";
-    $result = mysql_query($sql, $connect);
+  $sql = "select * from member where id='$userid'";
+  $result = mysql_query($sql, $connect);
 	$row = mysql_fetch_array($result);
 
 	$name = $row[name];
@@ -45,5 +48,3 @@
 	   </script>
 	";
 ?>
-
-  

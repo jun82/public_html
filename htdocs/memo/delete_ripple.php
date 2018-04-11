@@ -1,4 +1,5 @@
 <?
+      $num = $_GET['num'];
       include "../lib/dbconn.php";
 
       $sql = "delete from memo_ripple where num=$num";
@@ -11,5 +12,3 @@
 	   </script>
 	  ";
 ?>
-
-
