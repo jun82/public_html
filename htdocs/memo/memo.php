@@ -28,43 +28,45 @@
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta charset="utf-8">
-<link href="../css/common.css" rel="stylesheet" type="text/css" media="all">
-<link href="../css/memo.css" rel="stylesheet" type="text/css" media="all">
+	<meta charset="utf-8">
+	<link href="../css/common.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/memo.css" rel="stylesheet" type="text/css" media="all">
 </head>
 
 <body>
-<div id="wrap">
-  <div id="header">
-    <? include "../lib/top_login2.php"; ?>
-  </div>  <!-- end of header -->
-
-  <div id="menu">
-	<? include "../lib/top_menu2.php"; ?>
-  </div>  <!-- end of menu -->
-
-  <div id="content">
-	<div id="col1">
-		<div id="left_menu">
-<?
-			include "../lib/left_menu.php";
-?>
+	<div id="wrap">
+		<div id="header">
+			<? include "../lib/top_login2.php"; ?>
 		</div>
-	</div>
-	<div id="col2">
-		<div id="title">
-			<img src="../img/title_memo.gif">
-		</div>
+		<!-- end of header -->
 
-		<div id="memo_row1">
-       	<form  name="memo_form" method="post" action="insert.php">
-			<div id="memo_writer"><span >▷ <?= $usernick ?></span></div>
-			<div id="memo1"><textarea rows="6" cols="95" name="content"></textarea></div>
-			<div id="memo2"><input type="image" src="../img/memo_button.gif"></div>
-		</form>
-		</div> <!-- end of memo_row1 -->
-<?
+		<div id="menu">
+			<? include "../lib/top_menu2.php"; ?>
+		</div>
+		<!-- end of menu -->
+
+		<div id="content">
+			<div id="col1">
+				<div id="left_menu">
+					<?include "../lib/left_menu.php";?>
+				</div>
+			</div>
+			<div id="col2">
+				<div id="title">
+					<img src="../img/title_memo.gif">
+				</div>
+
+				<div id="memo_row1">
+					<form name="memo_form" method="post" action="insert.php">
+						<div id="memo_writer"><span>▷ <?= $usernick ?></span></div>
+						<div id="memo1"><textarea rows="6" cols="95" name="content"></textarea></div>
+						<div id="memo2"><input type="image" src="../img/memo_button.gif"></div>
+					</form>
+				</div>
+				<!-- end of memo_row1 -->
+				<?
    for ($i=$start; $i<$start+$scale && $i < $total_record; $i++)
    {
       mysql_data_seek($result, $i);
@@ -78,25 +80,32 @@
 	  $memo_content = str_replace("\n", "<br>", $row[content]);
 	  $memo_content = str_replace(" ", "&nbsp;", $memo_content);
 ?>
-		<div id="memo_writer_title">
-		<ul>
-		<li id="writer_title1"><?= $number ?></li>
-		<li id="writer_title2"><?= $memo_nick ?></li>
-		<li id="writer_title3"><?= $memo_date ?></li>
-		<li id="writer_title4">
-		      <?
+					<div id="memo_writer_title">
+						<ul>
+							<li id="writer_title1">
+								<?= $number ?>
+							</li>
+							<li id="writer_title2">
+								<?= $memo_nick ?>
+							</li>
+							<li id="writer_title3">
+								<?= $memo_date ?>
+							</li>
+							<li id="writer_title4">
+								<?
 					if($userid=="admin" || $userid==$memo_id)
 			          echo "<a href='delete.php?num=$memo_num'>[삭제]</a>";
 			  ?>
-		</li>
-		</ul>
-		</div>
-		<div id="memo_content"><?= $memo_content ?>
-		</div>
-		<div id="ripple">
-			<div id="ripple1">덧글</div>
-			<div id="ripple2">
-<?
+							</li>
+						</ul>
+					</div>
+					<div id="memo_content">
+						<?= $memo_content ?>
+					</div>
+					<div id="ripple">
+						<div id="ripple1">덧글</div>
+						<div id="ripple2">
+							<?
 	    $sql = "select * from memo_ripple where parent='$memo_num'";
 	    $ripple_result = mysql_query($sql);
 
@@ -109,41 +118,47 @@
 			$ripple_content = str_replace(" ", "&nbsp;", $ripple_content);
 			$ripple_date    = $row_ripple[regist_day];
 ?>
-				<div id="ripple_title">
-				<ul>
-				<li><?= $ripple_nick ?> &nbsp;&nbsp;&nbsp; <?= $ripple_date ?></li>
-				<li id="mdi_del">
-					<?
+								<div id="ripple_title">
+									<ul>
+										<li>
+											<?= $ripple_nick ?> &nbsp;&nbsp;&nbsp;
+												<?= $ripple_date ?>
+										</li>
+										<li id="mdi_del">
+											<?
 						if($userid=="admin" || $userid==$ripple_id)
 				            echo "<a href='delete_ripple.php?num=$ripple_num'>삭제</a>";
 					?>
-				</li>
-				</ul>
-				</div>
-				<div id="ripple_content"> <?= $ripple_content ?></div>
-<?
+										</li>
+									</ul>
+								</div>
+								<div id="ripple_content">
+									<?= $ripple_content ?>
+								</div>
+								<?
 		}
 ?>
-				<form  name="ripple_form" method="post" action="insert_ripple.php">
-				<input type="hidden" name="num" value="<?= $memo_num ?>">
-				<div id="ripple_insert">
-				    <div id="ripple_textarea">
-						<textarea rows="3" cols="80" name="ripple_content"></textarea>
-					</div>
-					<div id="ripple_button"><input type="image" src="../img/memo_ripple_button.png"></div>
-				</div>
-				</form>
+									<form name="ripple_form" method="post" action="insert_ripple.php">
+										<input type="hidden" name="num" value="<?= $memo_num ?>">
+										<div id="ripple_insert">
+											<div id="ripple_textarea">
+												<textarea rows="3" cols="80" name="ripple_content"></textarea>
+											</div>
+											<div id="ripple_button"><input type="image" src="../img/memo_ripple_button.png"></div>
+										</div>
+									</form>
 
-			</div> <!-- end of ripple2 -->
-  		    <div class="clear"></div>
-			<div class="linespace_10"></div>
-<?
+						</div>
+						<!-- end of ripple2 -->
+						<div class="clear"></div>
+						<div class="linespace_10"></div>
+						<?
 		$number--;
 	 }
 	 mysql_close();
 ?>
-			<div id="page_num"> ◀ 이전 &nbsp;&nbsp;&nbsp;&nbsp;
-<?
+							<div id="page_num"> ◀ 이전 &nbsp;&nbsp;&nbsp;&nbsp;
+								<?
    // 게시판 목록 하단에 페이지 링크 번호 출력
    for ($i=1; $i<=$total_page; $i++)
    {
@@ -157,11 +172,16 @@
 		}
    }
 ?>
-			&nbsp;&nbsp;&nbsp;&nbsp;다음 ▶</div>
-		 </div> <!-- end of ripple -->
-	</div> <!-- end of col2 -->
-  </div> <!-- end of content -->
-</div> <!-- end of wrap -->
+									&nbsp;&nbsp;&nbsp;&nbsp;다음 ▶</div>
+					</div>
+					<!-- end of ripple -->
+			</div>
+			<!-- end of col2 -->
+		</div>
+		<!-- end of content -->
+	</div>
+	<!-- end of wrap -->
 
 </body>
+
 </html>

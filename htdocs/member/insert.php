@@ -1,13 +1,16 @@
 <meta charset="utf-8">
 <?
+    date_default_timezone_set('Asia/Seoul');
    $id = $_POST['id'];
    $pass = $_POST['pass'];
    $name = $_POST['name'];
    $nick = $_POST['nick'];
-   $hp = $_POST['hp'];
-   $email = $_POST['email'];
-   $regist_day = $_POST['regist_day'];
-   
+   $hp1 = $_POST['hp1'];
+   $hp2= $_POST['hp2'];
+   $hp3 = $_POST['hp3'];
+   $email1 = $_POST['email1'];
+   $email2 = $_POST['email2'];
+
    $hp = $hp1."-".$hp2."-".$hp3;
    $email = $email1."@".$email2;
 
