@@ -6,7 +6,6 @@
   print_r($_POST);
   $id = $_POST['id'];
   $pass = $_POST['pass'];
-  $db_pass = $_POST['$db_pass'];
   // 이전 화면에서 이름이 입력되지 않았으면 "이름을 입력하세요."
   // 메세지 출력
   if(!$id)

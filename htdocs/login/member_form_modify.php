@@ -1,5 +1,7 @@
 <?
   session_start();
+
+  $userid = $_SESSION['userid'];
 ?>
 <!DOCTYPE HTML PUBLIC "=//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -96,7 +98,7 @@
   $result=mysql_query($sql, $connect);
   $row=mysql_fetch_array($result);
 
-  $hp=explode("-", $row[email]);
+  $hp=explode("-", $row[hp]);
   $hp1=$hp[0];
   $hp2=$hp[1];
   $hp3=$hp[2];
