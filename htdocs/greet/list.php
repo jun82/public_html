@@ -9,6 +9,7 @@
 <link href="../css/greet.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <?
+	$userid = $_SESSION['userid'];
 	$page = $_GET['page'];
 	$mode = $_GET['mode'];
 	$find = $_POST['find'];

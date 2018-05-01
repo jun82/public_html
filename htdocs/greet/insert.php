@@ -1,13 +1,14 @@
 <? session_start(); date_default_timezone_set('Asia/Seoul');?>
 <meta charset="utf-8">
 <?
+	$num = $_GET['num'];
 	$userid = $_SESSION['userid'];
-	// $username = $_GET['username'];
+	$username = $_SESSION['username'];
 	$subject = $_POST['subject'];
 	$content = $_POST['content'];
-	// $mode = $_GET['mode'];
-	// $html_ok = $_GET['html_ok'];
-	// $is_html = $_GET['is_html'];
+	$usernick = $_SESSION['usernick'];
+	$mode = $_GET['mode'];
+	$html_ok = $_GET['html_ok'];
 	if(!$userid) {
 		echo("
 		<script>
