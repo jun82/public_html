@@ -9,7 +9,6 @@
 	$usernick = $_SESSION['usernick'];
 	$mode = $_GET['mode'];
 	$html_ok = $_GET['html_ok'];
-	$is_html = $_GET['is_html'];
 	if(!$userid) {
 		echo("
 		<script>
