@@ -7,8 +7,9 @@
 	$subject = $_POST['subject'];
 	$content = $_POST['content'];
 	$usernick = $_SESSION['usernick'];
-	$mode = $_GET['mode'];
-	$html_ok = $_GET['html_ok'];
+	// $mode = $_GET['mode'];
+	$html_ok = $_POST['html_ok'];
+	$is_html = $_POST['is_html'];
 	if(!$userid) {
 		echo("
 		<script>
